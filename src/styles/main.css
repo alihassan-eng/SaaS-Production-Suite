@@ -24,3 +24,34 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+            background-color: var(--bg-dark);
+            color: var(--color-text);
+            font-family: var(--font-system);
+            padding-top: 90px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ==========================================================================
+   🔮 1. HARDWARE-ISOLATED FROSTED GLASS HEADER (Zero-Jank Scroll)
+   ========================================================================== */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: rgba(3, 5, 10, 0.5);
+
+            /* 🎯 مائیکرو فکس: فروسٹڈ گلاس اثر */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+
+            /* 🔥 اصل ہارڈ ویئر پروٹوکول: اس ہیڈر کو جی پی یو کی الگ میموری لیئر پر منتقل کرنا */
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+        }
