@@ -56,4 +56,47 @@
             top: 20px;
         }
 
+        /* ==========================================================================
+   HEADER COMPONENT (L8 ISOLATION LAYER)
+   ========================================================================== */
+        .enterprise-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(10, 11, 13, 0.85);
+            backdrop-filter: blur(12px);
+            /* Pushed to hardware compositor layer if supported */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            will-change: transform;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .brand-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+        }
+
+        .logo-accent {
+            color: #ccff00;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
        
