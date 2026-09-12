@@ -203,5 +203,30 @@
             outline: 3px solid #00b0ff;
             outline-offset: 4px;
         }
+/* ==========================================================================
+   MOBILE & RESPONSIVE INSULATION BREAKPOINTS (ANTI-COLLISION LAYER)
+   ========================================================================== */
+        @media (max-width: 640px) {
+            .header-container {
+                padding: 1rem;
+                flex-direction: column;
+                /* Switches to clean stack to avoid horizontal overlap */
+                gap: 1rem;
+                align-items: center;
+                text-align: center;
+            }
+
+            .nav-list {
+                gap: 1.5rem;
+            }
+
+            .cta-button-header {
+                width: 100%;
+                /* Expands button for thumbs on mobile to boost conversion rate */
+                text-align: center;
+                padding: 0.85rem 2rem;
+            }
+        }
+
 
        
