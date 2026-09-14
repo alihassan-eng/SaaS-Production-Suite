@@ -269,5 +269,52 @@
             margin-bottom: 2.5rem;
             font-weight: 400;
         }
+ /* ==========================================================================
+   HIGH-KINETIC HERO CTA (ZERO-REFRACTORY ELASTIC ENGINE)
+   ========================================================================== */
+
+        .cta-button-hero {
+            background-color: #ffffff;
+            /* Pure Elite White baseline for optimal contrast */
+            color: #000000;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            display: inline-block;
+
+            /* Strict Hardware Layer Isolation Matrix */
+            will-change: transform, background-color;
+            transform: translateZ(0);
+
+            /* Enforcing the exact identical Spring Matrix to preserve render pipelines */
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1.4),
+                background-color 0.2s ease-out;
+        }
+
+        /* 1. HOVER STATE: Springs outward smoothly into the signature energy accent */
+        .cta-button-hero:hover {
+            background-color: #ccff00;
+            /* Morphs beautifully into High-Energy Parrot/Neon Volt */
+            transform: scale(1.08) translateZ(0);
+            /* Clean expansion executed strictly on the GPU */
+        }
+
+        /* 2. PRESSED STATE: Kinetic compression feedback on human click cycles */
+        .cta-button-hero:active {
+            background-color: #b8e600;
+            /* Compresses into slightly deeper parrot tint to show hardware mechanical pressure */
+            transform: scale(0.96) translateZ(0);
+            /* Contracts instantly without breaking layer composition */
+            transition: transform 0.1s ease;
+        }
+
+        /* WCAG 2.2 AAA Regulatory Compliance Access Path */
+        .cta-button-hero:focus-visible {
+            outline: 3px solid #00b0ff;
+            outline-offset: 4px;
+        }
+
 
        
