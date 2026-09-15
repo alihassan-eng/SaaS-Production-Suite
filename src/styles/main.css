@@ -315,6 +315,45 @@
             outline: 3px solid #00b0ff;
             outline-offset: 4px;
         }
+/* ==========================================================================
+   GOALS GRID INTERFACE (ZERO-REFRACTORY REFLEXIVITY)
+   ========================================================================== */
+        .goals-section {
+            scroll-margin-top: 100px;
+            padding: 6rem 2rem;
+            background-color: rgba(255, 255, 255, 0.01);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .goals-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-header-block {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-desc {
+            color: var(--clr-text-muted);
+            font-size: 1rem;
+        }
+
+        /* High Performance Layout Grid (Hardened against Layout Thrashing) */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Strict minmax to prevent mobile breakdown */
+            gap: 2rem;
+        }
 
 
        
