@@ -354,6 +354,98 @@
             /* Strict minmax to prevent mobile breakdown */
             gap: 2rem;
         }
+        /* ==========================================================================
+   ADVANCED CYBER-GLOW CARD ENGINE (ZERO-REPAINT HARDWARE ACCELERATED)
+   ========================================================================== */
+        .goal-card {
+            background-color: var(--clr-surface-card);
+            /* Fixed: Linked cleanly to system surface tokens */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            z-index: 1;
+            /* Essential for pseudo-layer isolation */
+            cursor: pointer;
+            will-change: transform, border-color;
+            transform: translateZ(0);
+            /* Hardware Promotion Key */
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* 🧬 THE MAGIC LAYER: Pre-allocating Neon Glow in memory without firing CPU paint */
+        .goal-card::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 16px;
+            z-index: -1;
+            opacity: 0;
+            /* Totally hidden initially to optimize baseline frame rates */
+            background: transparent;
+            box-shadow: 0 0 30px rgba(204, 255, 0, 0.2), inset 0 0 15px rgba(204, 255, 0, 0.08);
+            will-change: opacity;
+            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* ACTIVE HOVER INTERACTIONS EXECUTED ON GPU COMPOSITOR */
+        .goal-card:hover {
+            transform: translateY(-8px) translateZ(0);
+            /* High-end kinetic vertical lift */
+            border-color: rgba(204, 255, 0, 0.3);
+            /* rivels neon boundary border line */
+        }
+
+        .goal-card:hover::after {
+            opacity: 1;
+            /* Hardware opacity switch triggers instantly */
+        }
+
+        /* AAA Accessibility Focus Integration */
+        .goal-card:focus-visible {
+            outline: 3px solid var(--clr-focus-ring);
+            outline-offset: 6px;
+            border-color: rgba(204, 255, 0, 0.6);
+        }
+
+        .goal-card:focus-visible::after {
+            opacity: 0.5;
+            /* Subdued glow for keyboard navigation paths */
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        .card-text {
+            color: var(--clr-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .card-metric {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--clr-brand-volt);
+            font-variant-numeric: tabular-nums;
+            /* Protects characters from shifting bounding-box layouts */
+        }
 
 
        
