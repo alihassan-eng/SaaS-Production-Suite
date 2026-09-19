@@ -446,6 +446,98 @@
             font-variant-numeric: tabular-nums;
             /* Protects characters from shifting bounding-box layouts */
         }
+  /* ==========================================================================
+   ENTERPRISE FOOTER SYSTEM (GLOBAL COMPLIANCE & BRANDING BOUNDARY)
+   ========================================================================== */
+        .enterprise-footer {
+            background-color: #0e0f14;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+            will-change: transform;
+        }
+
+        .footer-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .footer-brand-block {
+            max-width: 400px;
+        }
+
+        .footer-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--clr-text-pure);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-legal-text {
+            font-size: 0.85rem;
+            color: var(--clr-text-muted);
+            line-height: 1.5;
+        }
+
+        .footer-nav-list {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-link {
+            color: var(--clr-text-muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color var(--timing-smooth);
+        }
+
+        .footer-link:hover {
+            color: var(--clr-text-pure);
+            text-decoration: underline;
+            /* WCAG AAA essential enforcement for low-vision safety */
+        }
+
+        /* Regulatory Compliance Visual Shield Tokens */
+        .footer-compliance-badge {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .badge-text {
+            font-size: 0.7rem;
+            font-weight: 700;
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--clr-text-muted);
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            letter-spacing: 0.5px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Responsive Grid Fluid Adjustment for Small Screen Registers */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .footer-nav-list {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
 
 
        
