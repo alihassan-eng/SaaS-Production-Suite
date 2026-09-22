@@ -71,3 +71,18 @@ This document outlines the low-level mechanical engineering specifications of ou
 - **High-Throughput Media Grid:** Computes fluid multi-column responsive layers natively utilizing `repeat(auto-fit, minmax(300px, 1fr))` without triggering heavy JavaScript resize overhead.
 - **Geometric Grid Spanning:** Establishes precise positional priority locks via grid-column coordinates (`1 / -1`) to map dashboard hero blocks fluently.
 - **Explicit Named Areas:** Initializes semantic grid layout templates (`grid-template-areas`) to hardcode sidebar, header, and main nodes predictably on the render tree.
+#### ↔️ SECTION 3: FLUID CSS FLEXBOX INFRASTRUCTURE & MICRO-INTERACTION AXES
+*   **Flexible Action Pipelines:** Maps 1D coordinate workflows utilizing row/column axis alignment configurations with automated flex wrapping containment boundaries.
+*   **Elastic Space Allocation:** Controls layout collapsing failure states inside the button matrix by applying strict `flex-shrink: 0` constraints paired with elastic spacers (`flex-grow: 1`) to consume leftover spatial parameters smoothly.
+
+#### 📌 SECTION 4: PRECISE POSITIONING STRATEGIES & LAYER PRIORITY ORDERING
+*   **Positional Anchor Fences:** Configures strict relative container boundaries to capture absolute coordinate pins down to precise geometric dimensions.
+*   **Contextual Layer Isolation:** Establishes localized stacking ecosystems using `position: relative; z-index: 1;` to permanently prevent random z-index leaks and layout overlapping debt across the document lifecycle.
+
+#### 🔤 SECTION 5: ADVANCED FLUID TYPOGRAPHY & TEXT DYNAMICS
+*   **Mathematical Font Scaling:** Implements self-scaling text engines using the native CSS `clamp()` formula to calculate fluid font steps natively based on active viewport widths.
+*   **Readability Layout Constraints:** Locks horizontal reading line length down to the optimal cognitive fence (`max-width: 65ch`) while deploying `optimizeLegibility` text-rendering overrides.
+
+#### 📦 SECTION 6: ADVANCED W3C BOX MODEL DYNAMICS & SIZING CALCULUS
+*   **Logical Sizing Systems:** Replaces legacy hardware properties with modern W3C logical sizing tokens (`inline-size`, `block-size`, `padding-inline`) to guarantee multi-language layout safety (LTR to RTL) automatically.
+*   **Anti-Collapse Spacing Framework:** Leverages logical block margins with inline-block display states to stop unexpected top/bottom margin collapse leakage.
