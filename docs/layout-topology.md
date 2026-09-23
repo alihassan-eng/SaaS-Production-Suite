@@ -97,3 +97,14 @@ This document outlines the low-level mechanical engineering specifications of ou
 #### 🕹️ SECTION 9: ADVANCED UI INTERACTION LAYERS & CUSTOM FORM ARCHITECTURE
 *   **Low-Latency Control Inputs:** Bypasses ancient native browser focus outlines with customized focus-visible neon tracking rings and background alpha transformations.
 *   **Kinetic Compression Responses:** Offloads micro-movements straight to GPU layers via translate transitions, generating a realistic mechanical click pressure feel for interactive targets.
+#### 🛰️ SECTION 10: ADVANCED WEBKIT SCROLLBARS & VIEWPORT SCROLLERS
+*   **Anti-Jitter Scrollbar Framing:** Hardcodes fixed dimensions (`width: 10px`) on WebKit scroll trackers to permanently stop unexpected runtime layout shifts when scrollbars toggle views.
+*   **Branded Ingestion Highlighting:** Overrides native selection mechanics (`::selection`) to map dynamic neon text token glows during user data ingestion cycles.
+
+#### 🛩️ SECTION 11: HARDWARE-ACCELERATED 3D VIEWPORTS & DRONE PERSPECTIVES
+*   **Camera Calculus Mapping:** Generates real 3D depth by injecting the spatial perspective property (`perspective: 1000px`) onto the document tree.
+*   **Drone View Flight Coordinates:** Overrides standard viewpoint cameras via off-center perspective origins to capture high-authority corporate 3D rendering angles.
+
+#### 📦 SECTION 12: ADVANCED POLYHEDRON FACE GEOMETRY & 3D VECTOR ORIENTATIONS
+*   **Zero-Paint Polyhedron Meshes:** Eliminates bounding borders to slash rendering paint load down to absolute 0%, using inset lighting boxes instead.
+*   **Strict Coordinate Array Mapping:** Builds rigid 3D cubes by rotate-mapping 6 symmetric polyhedron mesh faces onto perfect spatial parameters (`translateZ(100px)`).
