@@ -169,3 +169,31 @@ This document outlines the low-level mechanical engineering specifications of ou
 ### 🧬 SECTION 10: W3C CASCADE LAYERS SPECIFICATION & PRIORITIZATION
 *   **Linear Priority Channels:** Maps framework configurations directly onto native `@layer` cascade hierarchies to completely neutralize global selector weight collisions.
 *   **Water-Tight Asset Fencing:** Seals base resets completely separate from high-priority functional elements to ensure full layout execution safety.
+
+---
+
+## ⚙️ Section 9: Rebase Micro-Architecture & Memory Stack Mechanics
+
+### 1. The Stack Pop Protocol (RAM Allocation Matrix)
+*   **Mechanical Execution:** When executing `git rebase main`, the core software engine maps and isolates all local commit objects resident on the feature branch that are absent from the target upstream branch.
+*   **LIFO Memory Management:** These standalone data matrices are popped sequentially off the active development graph and temporarily cached inside a dynamic Memory Stack array located under the persistent storage allocation block `.git/rebase-merge/`.
+
+### 2. Reference Pointer Manipulation & Hashing Recalibration
+*   **Ref Pointer Shifting:** The repository engine intercepts the 41-byte active reference text configuration layout path under `.git/refs/heads/your-branch`. It flushes the legacy commit reference pointer address, overwriting it directly with the high-priority hash string of the new upstream base node.
+*   **Cryptographic SHA Re-generation:** Commits are popped off the temporal RAM stack framework. The layout properties alter the historical parent SHA identifier header flags cleanly. Passing this structurally modified binary layer straight through the SHA-1/SHA-256 calculation engines outputs a brand new cryptographic checksum, re-writing system history down on disk space.
+
+---
+
+## 🛡️ Section 10: Fail-Safe Disaster Recovery & Git Reflog Forensics
+
+### 1. The Physics of Orphaned Nodes (Dangling Commits)
+*   **The System Reality:** Destructive commands like `git reset --hard HEAD~5` or manual branch purges do not drop actual file allocations from the storage medium cells instantly. Pointers shift backwards on the graph timeline layout, breaking physical tracking vectors.
+*   **Transistor Electron Capture:** Raw commit structures remain captured inside the solid-state storage device (SSD) transistor matrix arrays as unlabeled tracking entities. These units persist as isolated **Dangling Commits (Orphaned Nodes)** until the systems internal automated garbage collection engine activates.
+
+### 2. High-Throughput Recovery Ingestion
+*   **The Black-Box Flight Recorder:** Local development mutations trace tracking states securely inside the low-level chronological log subsystem located natively at `.git/logs/HEAD`.
+*   **System Re-linking Protocol:** Extracting target cryptographic hash identifiers directly from the local Reflog matrix allows system execution loops to run structural restorations via local plumbing endpoints:
+    ```bash
+    git reset --hard <target-cryptographic-hash>
+    ```
+*   **Hardware Synchronization:** The reference mapping configuration alters the `.git/HEAD` context instantly, forcing the isolated drive clusters to link back onto the main graph timeline layout with 0ms visual asset loss.
