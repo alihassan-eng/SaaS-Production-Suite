@@ -197,3 +197,15 @@ This document outlines the low-level mechanical engineering specifications of ou
     git reset --hard <target-cryptographic-hash>
     ```
 *   **Hardware Synchronization:** The reference mapping configuration alters the `.git/HEAD` context instantly, forcing the isolated drive clusters to link back onto the main graph timeline layout with 0ms visual asset loss.
+# L8 Vite Build Pipeline Architecture Registry
+
+Foundational distributed build telemetry mapping high-performance browser modules and dual-engine compilation infrastructure layers natively.
+
+## 🏎️ Core Engine Specifications
+* **Runtime Layer:** Native ES Modules (ESM) On-Demand Request Pipeline eliminating legacy monolithic bundling overheads.
+* **Compilation Matrix:** Multi-threaded **esbuild (Go-Lang Engine)** dependency pre-bundling coupled with **Rollup Production Engine** tree-shaking algorithms.
+* **Style Engine:** LightningCSS (Rust Engine) integration executing nanosecond Tailwind CSS v4 design token compilations.
+
+## ⚡ Network Optimization Framework
+* **Hot Module Replacement (HMR):** WebSocket binary message tracking for independent sub-pixel module hot-swapping.
+* **Package Management:** Fast-access pnpm Symlink configuration matrices resolving deep monorepo dependency graph loops natively.
