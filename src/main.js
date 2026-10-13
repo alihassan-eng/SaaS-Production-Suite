@@ -1,85 +1,64 @@
-  // ==========================================
-        // 1. MEMORY BLUEPRINT & APPLICATION STATE
-        // ==========================================
-        // These variables are locked in Block Scope inside this script block.
-        // Stack allocated references pointing to local states.
-        let accountBalance = 1000; 
+        const diagConsole = document.getElementById('diagConsole');
+        const runPrimitiveTest = document.getElementById('runPrimitiveTest');
+        const runReferenceTest = document.getElementById('runReferenceTest');
+        const runTdzTest = document.getElementById('runTdzTest');
 
-        // DOM Element References (Stack allocated pointer keys to Heap objects)
-        const balanceDisplay = document.getElementById('balanceDisplay');
-        const amountInput = document.getElementById('amountInput');
-        const depositBtn = document.getElementById('depositBtn');
-        const withdrawBtn = document.getElementById('withdrawBtn');
-        const logConsole = document.getElementById('logConsole');
-
-        // ==========================================
-        // 2. PURE FUNCTIONS (Zero Side-Effects)
-        // ==========================================
-        // CPU Cache Friendly (Deterministic: Same Input = Same Output)
-        // These routines manipulate raw numbers inside Stack memory registers.
-        const pureDeposit = (currentBalance, amount) => currentBalance + amount;
-        const pureWithdraw = (currentBalance, amount) => currentBalance - amount;
-
-        // ==========================================
-        // 3. HARDWARE LOGGING SYSTEM (Side-Effect Box)
-        // ==========================================
-        const appendHardwareLog = (message) => {
-            const time = new Date().toLocaleTimeString();
-            const logRow = document.createElement('div');
-            logRow.innerHTML = `<span class="text-slate-500">[${time}]</span> <span class="text-emerald-500">&gt;</span> ${message}`;
-            logConsole.appendChild(logRow);
-            logConsole.scrollTop = logConsole.scrollHeight; // Auto-scroll
+        const printLog = (msg) => {
+            const row = document.createElement('div');
+            row.innerHTML = `<span class="text-slate-600">[RAM_BUS]</span> &gt; ${msg}`;
+            diagConsole.appendChild(row);
+            diagConsole.scrollTop = diagConsole.scrollHeight;
         };
 
-        // ==========================================
-        // 4. TRANSACTION CONTROLLER (Control Flow)
-        // ==========================================
-        const processTransaction = (type) => {
-            // Nullish Coalescing (??) Protection Layer
-            // Forces raw string parsing with explicit coercion safety
-            const rawValue = amountInput.value === "" ? null : amountInput.value;
-            const finalizedInput = rawValue ?? "0"; // Plan B fallback
-
-            // Strict Coercion Validation (Explicitly casting String to Primitive Number)
-            const numericAmount = Number(finalizedInput);
-
-            // Guard Clauses (Strict Equality Filters)
-            if (isNaN(numericAmount) || numericAmount <= 0) {
-                appendHardwareLog(`<span class="text-rose-400">Reference rejected. Invalid atomic charge data.</span>`);
-                return;
-            }
-
-            // Stateful Evaluation Block
-            if (type === 'DEPOSIT') {
-                // Invoking pure mathematical pipeline
-                accountBalance = pureDeposit(accountBalance, numericAmount);
-                appendHardwareLog(`RAM Mutated. Cell address populated with new register value: $${accountBalance}`);
-            } else if (type === 'WITHDRAW') {
-                if (numericAmount > accountBalance) {
-                    appendHardwareLog(`<span class="text-amber-400">Transaction Blocked. Insufficient electronic funds in local balance cell.</span>`);
-                    return;
-                }
-                accountBalance = pureWithdraw(accountBalance, numericAmount);
-                appendHardwareLog(`RAM Mutated. Cell address populated with new register value: $${accountBalance}`);
-            }
-
-            // Single-Threaded UI Thread Sync (DOM Repaint via Blink Engine)
-            balanceDisplay.textContent = accountBalance;
-            amountInput.value = ''; // Flush input memory cell
-        };
-
-        // ==========================================
-        // 5. EVENT DRIVEN TRIGGERS (Call Stack Pushes)
-        // ==========================================
-        // When clicked, browser Web APIs push these contexts onto the Call Stack.
-        depositBtn.addEventListener('click', () => {
-            appendHardwareLog(`<span class="text-cyan-400">Call Stack PUSH: depositBtn_OnClick() Context Active.</span>`);
-            processTransaction('DEPOSIT');
-            appendHardwareLog(`<span class="text-slate-500">Call Stack POP: depositBtn_OnClick() Context Deallocated.</span>`);
+        // ========================================================
+        // TEST 1: PRIMITIVE COPY (BY VALUE)
+        // ========================================================
+        runPrimitiveTest.addEventListener('click', () => {
+            printLog("<span class='text-cyan-400'>Initializing Test 1...</span>");
+            
+            let originalAge = 25; // Original cell
+            let clonedAge = originalAge; // Value duplicated to a new address
+            
+            printLog(`Allocated cell 'originalAge' with 25. Cloned to 'clonedAge'.`);
+            
+            // Mutating the clone
+            clonedAge = 30;
+            printLog(`Mutated 'clonedAge' to 30. Checking original cell state...`);
+            printLog(`Result -> originalAge: <span class='text-emerald-400'>${originalAge}</span> | clonedAge: <span class='text-cyan-400'>${clonedAge}</span>`);
+            printLog("<span class='text-slate-500'>Conclusion: Stack cells are 100% isolated. No leakage.</span>");
         });
 
-        withdrawBtn.addEventListener('click', () => {
-            appendHardwareLog(`<span class="text-cyan-400">Call Stack PUSH: withdrawBtn_OnClick() Context Active.</span>`);
-            processTransaction('WITHDRAW');
-            appendHardwareLog(`<span class="text-slate-500">Call Stack POP: withdrawBtn_OnClick() Context Deallocated.</span>`);
+        // ========================================================
+        // TEST 2: REFERENCE COPY (BY POINTER)
+        // ========================================================
+        runReferenceTest.addEventListener('click', () => {
+            printLog("<span class='text-amber-400'>Initializing Test 2...</span>");
+            
+            // Dynamic allocation inside Heap Memory Field
+            let originalArray = ["BMW", "Audi"]; 
+            let clonedArray = originalArray; // ONLY copies the hash key/pointer
+            
+            printLog(`Allocated array in Heap. Pointer mirrored in Stack.`);
+            
+            // Mutating the cloned link
+            clonedArray.push("Lexus");
+            printLog(`Pushed 'Lexus' into 'clonedArray'. Checking original array content...`);
+            printLog(`Result -> originalArray: <span class='text-rose-400'>[${originalArray.join(', ')}]</span>`);
+            printLog("<span class='text-slate-500'>Conclusion: Shared Heap reference mutated the original data block.</span>");
+        });
+
+        // ========================================================
+        // TEST 3: TDZ DEADLOCK BREACH
+        // ========================================================
+        runTdzTest.addEventListener('click', () => {
+            printLog("<span class='text-rose-400'>Initializing Test 3...</span>");
+            printLog("Executing immediate out-of-order execution sequence...");
+            
+            try {
+                // V8 Engine bypass protection via eval to prevent compile-time stoppage
+                eval('printLog("Attempting register read..."); console.log(securedData); let securedData = 500;');
+            } catch (error) {
+                printLog(`<span class='text-rose-500 font-bold'>HARDWARE CRASH DETECTED:</span> ${error.message}`);
+                printLog("<span class='text-slate-500'>Conclusion: TDZ lock successfully blocked the CPU pointer. Safety verified.</span>");
+            }
         });
