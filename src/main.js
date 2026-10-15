@@ -123,3 +123,80 @@
                 telemetryLog("V8 verified: Entire code block was pre-copied to Heap during the Creation Phase [b].");
             }
         });
+        // =========================================================
+        // /////////////////////////////////////////////////////////
+        // =========================================================
+         const coercionConsole = document.getElementById('coercionConsole');
+        const runPlusTest = document.getElementById('runPlusTest');
+        const runMinusTest = document.getElementById('runMinusTest');
+        const runLooseEquality = document.getElementById('runLooseEquality');
+        const runStrictEquality = document.getElementById('runStrictEquality');
+        const runFallbackTest = document.getElementById('runFallbackTest');
+
+        const logicLog = (msg) => {
+            const row = document.createElement('div');
+            row.innerHTML = `<span class="text-slate-600">[COMPARE_BUS]</span> &gt; ${msg}`;
+            coercionConsole.appendChild(row);
+            coercionConsole.scrollTop = coercionConsole.scrollHeight;
+        };
+
+        // ========================================================
+        // TEST 1: OPERATOR COERCION ("5" + 9 vs "5" - 9)
+        // ========================================================
+        runPlusTest.addEventListener('click', () => {
+            logicLog("<span class='text-cyan-400'>Evaluating Operator: \"5\" + 9 </span>");
+            let result = "5" + 9;
+            logicLog(`V8 observed inverted quotes String. Switched Plus to Concatenation (Text Glue).`);
+            logicLog(`Result in RAM Cell -> Value: <span class='text-cyan-400'>${result}</span> | Type: <span class='text-emerald-400'>${typeof result}</span>`);
+        });
+
+        runMinusTest.addEventListener('click', () => {
+            logicLog("<span class='text-indigo-400'>Evaluating Operator: \"5\" - 9 </span>");
+            let result = "5" - 9;
+            logicLog(`V8 observed Mathematical Minus. Explicitly brute-forced String "5" into Primitive Number.`);
+            logicLog(`Result in RAM Cell -> Value: <span class='text-cyan-400'>${result}</span> | Type: <span class='text-emerald-400'>${typeof result}</span>`);
+        });
+
+        // ========================================================
+        // TEST 2: EQUALITY LOCKS (== vs ===)
+        // ========================================================
+        runLooseEquality.addEventListener('click', () => {
+            logicLog("<span class='text-amber-400'>Evaluating Loose Equality Lock: (\"5\" == 5)</span>");
+            if ("5" == 5) {
+                logicLog("Status: <span class='text-emerald-400'>TRUE</span>. Lock opened. Coercion engine bypassed type lineage.");
+            } else {
+                logicLog("Status: FALSE.");
+            }
+        });
+
+        runStrictEquality.addEventListener('click', () => {
+            logicLog("<span class='text-orange-400'>Evaluating Strict Equality Lock: (\"5\" === 5)</span>");
+            if ("5" === 5) {
+                logicLog("Status: TRUE.");
+            } else {
+                logicLog("Status: <span class='text-rose-400'>FALSE</span>. Lock secure [b]! Rejected due to Type Lineage Mismatch (String vs Number) [b].");
+            }
+        });
+
+        // ========================================================
+        // TEST 3: SERVER DATA FALLBACKS (Plan B Protection)
+        // ========================================================
+        runFallbackTest.addEventListener('click', () => {
+            logicLog("<span class='text-rose-400'>Simulating Network Fetch Completion...</span>");
+            
+            // Corrupted incoming payload from mock crashed server
+            let incomingServerPayload = {
+                username: null, // Critical missing field
+                score: 0        // Valid numeric zero score state
+            };
+
+            logicLog("Raw Server Data Received -> username: null, score: 0");
+            
+            // Filtering empty fields using Nullish Coalescing (??) gate
+            let safeUsername = incomingServerPayload.username ?? "Anonymous Guest";
+            let safeScore = incomingServerPayload.score ?? 100; // Protection check
+
+            logicLog(`Plan B Gate evaluation finalized.`);
+            logicLog(`Output -> username: <span class='text-emerald-400'>"${safeUsername}"</span> (Fallback triggered)`);
+            logicLog(`Output -> score: <span class='text-cyan-400'>${safeScore}</span> (Valid Zero preserved safely!)`);
+        });
