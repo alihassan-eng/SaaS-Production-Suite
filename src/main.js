@@ -62,3 +62,64 @@
                 printLog("<span class='text-slate-500'>Conclusion: TDZ lock successfully blocked the CPU pointer. Safety verified.</span>");
             }
         });
+        // ================================================================
+        // ////////////////////////////////////////////////////////////////
+        // ================================================================
+         const runtimeConsole = document.getElementById('runtimeConsole');
+        const triggerStackBtn = document.getElementById('triggerStackBtn');
+        const triggerHoistingBtn = document.getElementById('triggerHoistingBtn');
+
+        const telemetryLog = (msg) => {
+            const row = document.createElement('div');
+            row.innerHTML = `<span class="text-slate-600">[V8_THREAD]</span> &gt; ${msg}`;
+            runtimeConsole.appendChild(row);
+            runtimeConsole.scrollTop = runtimeConsole.scrollHeight;
+        };
+
+        // ========================================================
+        // TEST 1: CALL STACK LIFE CYCLE (PUSH & POP SIMULATION)
+        // ========================================================
+        
+        // Target routines to push onto the stack
+        function coreDatabaseQuery() {
+            telemetryLog("<span class='text-rose-400'>[PUSH] -> coreDatabaseQuery() active on top of stack.</span>");
+            telemetryLog("Reading specific RAM addresses... Data loaded.");
+            telemetryLog("<span class='text-slate-500'>[POP] -> coreDatabaseQuery() complete. Cell deallocated.</span>");
+        }
+
+        function validateUserSession() {
+            telemetryLog("<span class='text-amber-400'>[PUSH] -> validateUserSession() context active.</span>");
+            // Nesting next stack frame
+            coreDatabaseQuery();
+            telemetryLog("<span class='text-slate-500'>[POP] -> validateUserSession() complete. Cell deallocated.</span>");
+        }
+
+        triggerStackBtn.addEventListener('click', () => {
+            telemetryLog("<span class='text-cyan-400'>--- CALL STACK ACTIVATED ---</span>");
+            telemetryLog("[PUSH] -> Global Click Listener Context established.");
+            
+            // Triggering thread entry point
+            validateUserSession();
+            
+            telemetryLog("<span class='text-cyan-400'>--- STACK FLUSHED (LIFO CLEAR) ---</span>");
+        });
+
+        // ========================================================
+        // TEST 2: HOISTING MECHANICS (OUT OF ORDER CALL)
+        // ========================================================
+        triggerHoistingBtn.addEventListener('click', () => {
+            telemetryLog("<span class='text-amber-400'>--- HOISTING EVALUATION STARTED ---</span>");
+            
+            try {
+                // EXECUTING THE CALL *BEFORE* THE DEFINITION LINE IN TEXT FLOW
+                heapLoadedFunction(); 
+            } catch(e) {
+                telemetryLog(`Crash Check: ${e.message}`);
+            }
+
+            // The physical declaration is placed below the invocation line
+            function heapLoadedFunction() {
+                telemetryLog("Success -> <span class='text-emerald-400'>heapLoadedFunction() executed perfectly!</span>");
+                telemetryLog("V8 verified: Entire code block was pre-copied to Heap during the Creation Phase [b].");
+            }
+        });
