@@ -200,3 +200,88 @@
             logicLog(`Output -> username: <span class='text-emerald-400'>"${safeUsername}"</span> (Fallback triggered)`);
             logicLog(`Output -> score: <span class='text-cyan-400'>${safeScore}</span> (Valid Zero preserved safely!)`);
         });
+        // ================================================================
+        // ////////////////////////////////////////////////////////////////
+        // ================================================================
+                const scopeConsole = document.getElementById('scopeConsole');
+        const runBlockTest = document.getElementById('runBlockTest');
+        const runScopeChainTest = document.getElementById('runScopeChainTest');
+
+        const scopeLog = (msg) => {
+            const row = document.createElement('div');
+            row.innerHTML = `<span class="text-slate-600">[SCOPE_BUS]</span> &gt; ${msg}`;
+            scopeConsole.appendChild(row);
+            scopeConsole.scrollTop = scopeConsole.scrollHeight;
+        };
+
+        // ========================================================
+        // GLOBAL SCOPE LAYER (فائل کا آخری کھلا میدان)
+        // ========================================================
+        let globalAsset = "Gold (Global)";
+
+        // ========================================================
+        // TEST 1: BLOCK SCOPE DEALLOCATION (بریکٹ تالا)
+        // ========================================================
+        runBlockTest.addEventListener('click', () => {
+            scopeLog("<span class='text-cyan-400'>Initializing Block Scope Test...</span>");
+            
+            // Entering isolated bracket block
+            if (true) {
+                let bracketSecret = "MIT_ISOLATED_CELL";
+                var leakedSecret = "VAR_LEAKED_CELL";
+                scopeLog(`Inside brackets -> let 'bracketSecret' and var 'leakedSecret' are initialized.`);
+            } 
+            
+            scopeLog("Exited brackets. V8 engine running deallocation routine...");
+
+            // Checking var leakage (No bracket protection)
+            scopeLog(`Checking var -> leakedSecret: <span class='text-rose-400'>${leakedSecret}</span> (Leaked! Memory Pollution)`);
+
+            // Checking let protection (Enclosed inside bracket lock)
+            try {
+                // This will crash because bracketSecret was wiped from RAM on bracket exit
+                eval('console.log(bracketSecret);');
+            } catch (error) {
+                scopeLog(`Checking let -> Result: <span class='text-emerald-400'>Secure!</span> RAM cell was destroyed.`);
+                scopeLog(`<span class='text-rose-500 font-bold'>ENGINE EXCEPTION:</span> ${error.message}`);
+            }
+        });
+
+        // ========================================================
+        // TEST 2: SCOPE CHAIN SEARCH (ریورس ون-وے تلاشی)
+        // ========================================================
+        runScopeChainTest.addEventListener('click', () => {
+            scopeLog("<span class='text-amber-400'>Starting Scope Chain Traversal...</span>");
+            
+            let parentAsset = "Silver (Parent)";
+
+            // Child execution context nested inside parent
+            function childExecutionRoutine() {
+                let childAsset = "Bronze (Child)";
+                
+                scopeLog("--- CPU LOOKUP TIMELINE ---");
+                
+                // 1. Local Search
+                scopeLog(`Searching 'childAsset' locally... Found: <span class='text-cyan-400'>${childAsset}</span>`);
+                
+                // 2. Parent Search via Outer Reference Pointer
+                scopeLog("Searching 'parentAsset' locally... Missing. Extracting Outer Reference Pointer...");
+                scopeLog(`Jumping to Parent Context... Found: <span class='text-amber-400'>${parentAsset}</span>`);
+                
+                // 3. Global Search via Root Pointer
+                scopeLog("Searching 'globalAsset' locally... Missing. Travelling up the chain to Root...");
+                scopeLog(`Jumping to Global Scope Field... Found: <span class='text-emerald-400'>${globalAsset}</span>`);
+                
+                // 4. Broken Chain Search (Crash Test)
+                scopeLog("Searching 'nonExistentAsset' up to Global ceiling... Missing.");
+                try {
+                    eval('console.log(nonExistentAsset);');
+                } catch(e) {
+                    scopeLog(`<span class='text-rose-500 font-bold'>CHAIN TERMINATED:</span> ${e.message}`);
+                    scopeLog("<span class='text-slate-500'>Conclusion: Reverse lookup failed safely. State protected.</span>");
+                }
+            }
+
+            // Triggering the nested routing chain
+            childExecutionRoutine();
+        });
