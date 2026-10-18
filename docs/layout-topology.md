@@ -50,3 +50,15 @@
     > JavaScript manages massive data traffic behind the curtain via the Call Stack (The Manager), Background Web APIs (The Specialists), and The Event Loop (The Traffic Guard) to ensure zero refractory delays. 
     > Messy computational load blocks the main execution flow, crashing conversion metrics. Deployed absolute rendering isolation hooks inside Apex Fitness to lock Core Web Vitals at sub-millisecond execution tiers."
 
+
+---
+
+## : Advanced Async & Network Infrastructure - Execution Telemetry
+
+### 1. Event Loop Engine & Thread Blocking Prevention Matrix
+*   **Microtask Throttling Paths:** Audited dynamic execution priorities inside the V8 engine runtime, verifying that microtask queues (Promises) completely bypass macrotask frames (`setTimeout`) during continuous asynchronous sweeps to eliminate UI presentation jitter [3Dtl4Z].
+*   **Thread Starvation Defenses:** Monitored single-threaded call stack exhaustion profiles, establishing explicit offloading boundaries to insulate layout repaint trees from blocking computation layers.
+
+### 2. Advanced HTTP Streams & Fetch Ingestion Optimization
+*   **Network Request Purge Protocols:** Deployed explicit signal abort handlers (`AbortController`) to target active background network pipes, instantly terminating orphaned fetch operations before memory consumption triggers cold-start latency.
+*   **Payload Boundary Controls:** Optimized client-to-server data routing streams to guarantee deterministic data residency bounds and neutralize memory pollution vectors across live endpoints.
